@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    .green { background-color: rgb(108, 236, 105); }
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        text-align: left; /* Center align the text in the table cells */
+        max-width: 200px; /* Set a maximum width for the table cells */
+        overflow: hidden; /* Hide content that exceeds the maximum width */
+        text-overflow: ellipsis; /* Show an ellipsis when the content is too long */
+        white-space: nowrap; /* Prevent the content from wrapping to the next line */
+    }
+    
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left; /* Center align the text in the table cells */
+    }
+
+    #coverImageSection {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    #coverImage {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>7 января 2024. Rullez Team Christmas Uphill Race</h1>
+</header>
+<div id="coverImageSection">
+    <img id="coverImage" src="" alt="Cover Image">
+</div>
+
+<table id="absoluteTable">
+    <tr>
+      <th>Позиция</th>
+      <th>Фамилия Имя</th>
+      <th>Время</th>
+    </tr>
+    <!-- Абсолютные результаты -->
+    <!-- Добавьте остальные строки здесь -->
+  </table>
+
+<h2>Мужской Зачет</h2>
+<table id="maleTable">
+  <tr>
+    <th>Позиция</th>
+    <th>Фамилия Имя</th>
+    <th>Время</th>
+  </tr>
+  <!-- Мужские результаты -->
+  <!-- Добавьте остальные строки здесь -->
+</table>
+
+<h2>Женский Зачет</h2>
+<table id="femaleTable">
+  <tr>
+    <th>Позиция</th>
+    <th>Фамилия Имя</th>
+    <th>Время</th>
+  </tr>
+  <!-- Женские результаты -->
+  <!-- Добавьте остальные строки здесь -->
+</table>
+
+<h2>Топ-3 Мужчины</h2>
+<table id="topMaleTable">
+  <!-- Топ-3 мужские результаты -->
+</table>
+
+<h2>Топ-3 Женщины</h2>
+<table id="topFemaleTable">
+  <!-- Топ-3 женские результаты -->
+</table>
+
+<script>
+    document.getElementById('coverImage').src = 'cover.jpg';
+
+    const participants = [
+        { name: "Конюхов Илья", gender: "M", time: "23:18", time_seconds: 1398 },
+        { name: "Рулевский Евгений", gender: "M", time: "23:46", time_seconds: 1426 },
+        { name: "Калинников Алексей", gender: "M", time: "25:17", time_seconds: 1517 },
+        { name: "Жучков Евгений", gender: "M", time: "25:36", time_seconds: 1536 },
+        { name: "Наумов Данила", gender: "M", time: "25:52", time_seconds: 1552 },
+        { name: "Крапивко Павел", gender: "M", time: "26:28", time_seconds: 1588 },
+        { name: "Кагарманов Ильнур", gender: "M", time: "29:28", time_seconds: 1768 },
+        { name: "Мельников Михаил", gender: "M", time: "26:51", time_seconds: 1611 },
+        { name: "Тер-Микаэлян Елена", gender: "F", time: "37:54", time_seconds: 2274 },
+        { name: "Домникова Юля", gender: "F", time: "34:34", time_seconds: 2074 },
+        { name: "Торопова Марина", gender: "F", time: "36:58", time_seconds: 2218 },
+        { name: "Вершинина Надежда", gender: "F", time: "29:52", time_seconds: 1792 },
+        { name: "Руссу Нина", gender: "F", time: "37:54", time_seconds: 2274 },
+        { name: "Кузубаева Салтанат", gender: "F", time: "30:43", time_seconds: 1843 },
+        { name: "Гамзатов Георгий", gender: "M", time: "33:08", time_seconds: 1988 },
+        { name: "Талашко Дмитрий", gender: "M", time: "34:23", time_seconds: 2063 },
+        { name: "Кобыляков Владимир", gender: "M", time: "26:33", time_seconds: 1593 },
+        { name: "Пермяков Павел", gender: "M", time: "28:44", time_seconds: 1724 },
+        { name: "Вдовин Антон", gender: "M", time: "27:26", time_seconds: 1646 },
+        { name: "Филиппова Анна", gender: "F", time: "35:44", time_seconds: 2144 }
+    ];
+
+    function populateTables() {
+        const maleParticipants = participants.filter(p => p.gender === "M").sort((a, b) => a.time_seconds - b.time_seconds);
+        const femaleParticipants = participants.filter(p => p.gender === "F").sort((a, b) => a.time_seconds - b.time_seconds);
+        const absoluteParticipants = participants.sort((a, b) => a.time_seconds - b.time_seconds);
+    
+        // Функция для добавления участников в таблицу
+        function addParticipantsToTable(participants, tableId) {
+            const table = document.getElementById(tableId);
+            participants.forEach((participant, index) => {
+                const row = table.insertRow();
+                row.insertCell(0).innerText = index + 1;
+                row.insertCell(1).innerText = participant.name;
+                row.insertCell(2).innerText = participant.time;
+            });
+        }
+    
+        // Добавление участников в таблицы
+        addParticipantsToTable(maleParticipants, "maleTable");
+        addParticipantsToTable(femaleParticipants, "femaleTable");
+        addParticipantsToTable(absoluteParticipants, "absoluteTable");
+    
+        // Топ-3 мужчин и женщин
+        addParticipantsToTable(maleParticipants.slice(0, 3), "topMaleTable");
+        addParticipantsToTable(femaleParticipants.slice(0, 3), "topFemaleTable");
+    }
+    
+    // Вызов функции после загрузки страницы
+    window.onload = populateTables;
+
+
+    // Скрипт для случайного присвоения цвета каждой строке
+    const rows = document.querySelectorAll('tr');
+    rows.forEach(row => {
+        const rand = Math.random() * 100;
+        if (rand < 70) {
+            row.classList.add('green');
+        } else if (rand < 90) {
+            row.classList.add('blue');
+        } else {
+            row.classList.add('red');
+        }
+    });
+
+    // Сгенерируйте здесь участников и добавьте их в таблицы
+</script>
+
+</body>
+</html>

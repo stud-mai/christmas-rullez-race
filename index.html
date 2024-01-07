@@ -52,6 +52,7 @@
       <th>Позиция</th>
       <th>Фамилия Имя</th>
       <th>Время</th>
+      <th>Темп (мин/км)</th>
     </tr>
     <!-- Абсолютные результаты -->
     <!-- Добавьте остальные строки здесь -->
@@ -63,6 +64,7 @@
     <th>Позиция</th>
     <th>Фамилия Имя</th>
     <th>Время</th>
+    <th>Темп (мин/км)</th>
   </tr>
   <!-- Мужские результаты -->
   <!-- Добавьте остальные строки здесь -->
@@ -74,6 +76,7 @@
     <th>Позиция</th>
     <th>Фамилия Имя</th>
     <th>Время</th>
+    <th>Темп (мин/км)</th>
   </tr>
   <!-- Женские результаты -->
   <!-- Добавьте остальные строки здесь -->
@@ -106,7 +109,7 @@
         { name: "Торопова Марина", gender: "F", time: "36:58", time_seconds: 2218 },
         { name: "Вершинина Надежда", gender: "F", time: "29:52", time_seconds: 1792 },
         { name: "Руссу Нина", gender: "F", time: "37:54", time_seconds: 2274 },
-        { name: "Кузубаева Салтанат", gender: "F", time: "30:43", time_seconds: 1843 },
+        { name: "Казыбаева Салтанат", gender: "F", time: "30:43", time_seconds: 1843 },
         { name: "Гамзатов Георгий", gender: "M", time: "33:08", time_seconds: 1988 },
         { name: "Талашко Дмитрий", gender: "M", time: "34:23", time_seconds: 2063 },
         { name: "Кобыляков Владимир", gender: "M", time: "26:33", time_seconds: 1593 },
@@ -115,21 +118,38 @@
         { name: "Филиппова Анна", gender: "F", time: "35:44", time_seconds: 2144 }
     ];
 
+
+    // Вычислите темп для каждого участника
+    const distance = 5.7;
+    // Calculate pace for each participant in format mm:ss min/km
+    function calculatePace(participant) {
+        const pace = (participant.time_seconds / 60) / distance;
+        const minutes = Math.floor(pace);
+        const seconds = Math.round((pace - minutes) * 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    participants.forEach(participant => {
+        participant.pace = calculatePace(participant);
+        console.log(participant);
+    });
+
+    // Функция для добавления участников в таблицу
+    function addParticipantsToTable(participants, tableId) {
+        const table = document.getElementById(tableId);
+        participants.forEach((participant, index) => {
+            const row = table.insertRow();
+            row.insertCell(0).innerText = index + 1;
+            row.insertCell(1).innerText = participant.name;
+            row.insertCell(2).innerText = participant.time;
+            row.insertCell(3).innerText = participant.pace; // добавьте темп в таблицу
+        });
+    }
+
     function populateTables() {
         const maleParticipants = participants.filter(p => p.gender === "M").sort((a, b) => a.time_seconds - b.time_seconds);
         const femaleParticipants = participants.filter(p => p.gender === "F").sort((a, b) => a.time_seconds - b.time_seconds);
         const absoluteParticipants = participants.sort((a, b) => a.time_seconds - b.time_seconds);
-    
-        // Функция для добавления участников в таблицу
-        function addParticipantsToTable(participants, tableId) {
-            const table = document.getElementById(tableId);
-            participants.forEach((participant, index) => {
-                const row = table.insertRow();
-                row.insertCell(0).innerText = index + 1;
-                row.insertCell(1).innerText = participant.name;
-                row.insertCell(2).innerText = participant.time;
-            });
-        }
     
         // Добавление участников в таблицы
         addParticipantsToTable(maleParticipants, "maleTable");

@@ -3,94 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-    .green { background-color: rgb(108, 236, 105); }
     body {
         font-family: 'Roboto', sans-serif;
-    }
-    
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        text-align: left; /* Center align the text in the table cells */
-        max-width: 200px; /* Set a maximum width for the table cells */
-        overflow: hidden; /* Hide content that exceeds the maximum width */
-        text-overflow: ellipsis; /* Show an ellipsis when the content is too long */
-        white-space: nowrap; /* Prevent the content from wrapping to the next line */
-    }
-    
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left; /* Center align the text in the table cells */
-    }
-
-    #coverImageSection {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-    
-    #coverImage {
-        max-width: 100%;
-        height: auto;
     }
 </style>
 </head>
 <body>
-<header>
-    <h1>7 января 2024. Rullez Team Christmas Uphill Race</h1>
-</header>
-<div id="coverImageSection">
-    <img id="coverImage" src="" alt="Cover Image">
+<div class="container">
+    <header class="mt-3">
+        <h1>7 января 2024. Rullez Team Christmas Uphill Race</h1>
+    </header>
+    <div id="coverImageSection" class="d-flex justify-content-center mb-3">
+        <img id="coverImage" class="img-fluid" src="" alt="Cover Image">
+    </div>
+
+    <div class="table-responsive">
+        <table id="absoluteTable" class="table table-hover table-striped-columns">
+            <thead class="table-success">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Время</th>
+                    <th scope="col">Темп</th>
+                </tr>
+            </thead>
+            <tbody id="absoluteTableBody" class="table-group-divider">
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Мужской Зачет</h2>
+    <div class="table-responsive">
+        <table id="maleTable" class="table table-hover table-striped-columns">
+            <!-- Table content -->
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">#</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Время</th>
+                    <th scope="col">Темп</th>
+                </tr>
+            </thead>
+            <tbody id="maleTableBody" class="table-group-divider">
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Женский Зачет</h2>
+    <div class="table-responsive">
+        <table id="femaleTable" class="table table-hover table-striped-columns">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">#</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Время</th>
+                    <th scope="col">Темп</th>
+                </tr>
+            <tbody id="femaleTableBody" class="table-group-divider">
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Топ-3 Мужчины</h2>
+    <div class="table-responsive">
+        <table id="topMaleTable" class="table table-hover table-striped-columns">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">#</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Время</th>
+                    <th scope="col">Темп</th>
+                </tr>
+            </thead>
+            <tbody id="topMaleTableBody" class="table-group-divider">
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Топ-3 Женщины</h2>
+    <div class="table-responsive">
+        <table id="topFemaleTable" class="table table-hover table-striped-columns">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">#</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Время</th>
+                    <th scope="col">Темп</th>
+                </tr>
+            </thead>
+            <tbody id="topFemaleTableBody" class="table-group-divider">
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<table id="absoluteTable">
-    <tr>
-      <th>Позиция</th>
-      <th>Фамилия Имя</th>
-      <th>Время</th>
-      <th>Темп (мин/км)</th>
-    </tr>
-    <!-- Абсолютные результаты -->
-    <!-- Добавьте остальные строки здесь -->
-  </table>
-
-<h2>Мужской Зачет</h2>
-<table id="maleTable">
-  <tr>
-    <th>Позиция</th>
-    <th>Фамилия Имя</th>
-    <th>Время</th>
-    <th>Темп (мин/км)</th>
-  </tr>
-  <!-- Мужские результаты -->
-  <!-- Добавьте остальные строки здесь -->
-</table>
-
-<h2>Женский Зачет</h2>
-<table id="femaleTable">
-  <tr>
-    <th>Позиция</th>
-    <th>Фамилия Имя</th>
-    <th>Время</th>
-    <th>Темп (мин/км)</th>
-  </tr>
-  <!-- Женские результаты -->
-  <!-- Добавьте остальные строки здесь -->
-</table>
-
-<h2>Топ-3 Мужчины</h2>
-<table id="topMaleTable">
-  <!-- Топ-3 мужские результаты -->
-</table>
-
-<h2>Топ-3 Женщины</h2>
-<table id="topFemaleTable">
-  <!-- Топ-3 женские результаты -->
-</table>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
     document.getElementById('coverImage').src = 'cover.jpg';
@@ -135,8 +145,8 @@
     });
 
     // Функция для добавления участников в таблицу
-    function addParticipantsToTable(participants, tableId) {
-        const table = document.getElementById(tableId);
+    function addParticipantsToTable(participants, tableBodyId) {
+        const table = document.getElementById(tableBodyId);
         participants.forEach((participant, index) => {
             const row = table.insertRow();
             row.insertCell(0).innerText = index + 1;
@@ -152,31 +162,17 @@
         const absoluteParticipants = participants.sort((a, b) => a.time_seconds - b.time_seconds);
     
         // Добавление участников в таблицы
-        addParticipantsToTable(maleParticipants, "maleTable");
-        addParticipantsToTable(femaleParticipants, "femaleTable");
-        addParticipantsToTable(absoluteParticipants, "absoluteTable");
+        addParticipantsToTable(maleParticipants, "maleTableBody");
+        addParticipantsToTable(femaleParticipants, "femaleTableBody");
+        addParticipantsToTable(absoluteParticipants, "absoluteTableBody");
     
         // Топ-3 мужчин и женщин
-        addParticipantsToTable(maleParticipants.slice(0, 3), "topMaleTable");
-        addParticipantsToTable(femaleParticipants.slice(0, 3), "topFemaleTable");
+        addParticipantsToTable(maleParticipants.slice(0, 3), "topMaleTableBody");
+        addParticipantsToTable(femaleParticipants.slice(0, 3), "topFemaleTableBody");
     }
     
     // Вызов функции после загрузки страницы
     window.onload = populateTables;
-
-
-    // Скрипт для случайного присвоения цвета каждой строке
-    const rows = document.querySelectorAll('tr');
-    rows.forEach(row => {
-        const rand = Math.random() * 100;
-        if (rand < 70) {
-            row.classList.add('green');
-        } else if (rand < 90) {
-            row.classList.add('blue');
-        } else {
-            row.classList.add('red');
-        }
-    });
 
     // Сгенерируйте здесь участников и добавьте их в таблицы
 </script>
